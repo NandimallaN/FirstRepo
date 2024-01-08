@@ -13,7 +13,4 @@ public String toString() {
 	return "Manager [desig=" + desig + ", toString()=" + super.toString() + "]";
 }
 	
-
-
-   
 }
