@@ -12,11 +12,11 @@ public class StringDemo1 {
 		  System.out.println(str2.hashCode());
 		  System.out.println(str3.hashCode());
 		  
-		  str3="HelloWorld";
+		 // str3="HelloWorld";
 		  
 		  System.out.println(str3.hashCode());
 		  
-		if(str1==str2)
+		if(str1==str3)
 			System.out.println("String ares equal");
 		else 
 			System.out.println("String are not equal");
