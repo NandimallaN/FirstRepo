@@ -1,6 +1,7 @@
 package com.app;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.app.bean.Employee;
 
@@ -31,9 +32,9 @@ public class ArrayListDemo1 {
 		list.add(e22);
 		list.add(e33);
 		list.add(e44);
+		HashSet<Employee> hs=new HashSet<Employee>(list);
 		
-		
-		for (Employee e : list) {
+		for (Employee e : hs) {
 			System.out.println(e);
 		}
 		
