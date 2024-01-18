@@ -7,14 +7,15 @@ import java.io.IOException;
 
 public class WriteFileData {
 
+	static FileOutputStream fos=null;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		// Compile time Exception or Checked Exception
-		File file=new File("");
-		String s="Excelon Soluations....";
+		File file=new File("Text.txt");
+		String s="Welcome to Java programming IO CONCEPTS....";
 		byte b[]=s.getBytes();
-		FileOutputStream fos=null;
+		
 		
 		try {
 			fos=new FileOutputStream(file);
