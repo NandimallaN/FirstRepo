@@ -39,6 +39,7 @@ public class LoginServlet extends HttpServlet {
 		String uname=request.getParameter("uname");
 		String pswd=request.getParameter("pswd");
 		out.println(uname+"             "+pswd);
+		
 		LoginDAO userdao=new LoginDaoImpl();
 		String role=userdao.getRoleFromDB(uname, pswd);
 		System.out.println("Role Servlet"+role);
@@ -46,17 +47,17 @@ public class LoginServlet extends HttpServlet {
 		
 		if(role.equals("hr"))
 		{
-			rd=request.getRequestDispatcher("hr.html");
+			rd=request.getRequestDispatcher("/Servlet5");
 			rd.forward(request, response);
 		}
 		else if(role.equals("Manager"))
 		{
-			rd=request.getRequestDispatcher("Manager.html");
+			rd=request.getRequestDispatcher("/Servlet6");
 			rd.forward(request, response);
 		}
 		else if(role.equals("Employee"))
 		{
-			rd=request.getRequestDispatcher("Employee.html");
+			rd=request.getRequestDispatcher("/Servlet7");
 			rd.forward(request, response);
 		}
 		else
