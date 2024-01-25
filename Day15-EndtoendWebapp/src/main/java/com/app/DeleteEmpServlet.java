@@ -5,7 +5,10 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,53 +16,49 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class InsertEmpServlet
- */
-@WebServlet("/InsertEmpServlet")
-public class InsertEmpServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+import com.app.model.LoginDAO;
 
+/**
+ * Servlet implementation class Servlet5
+ */
+@WebServlet("/DeleteEmpServlet")
+public class DeleteEmpServlet extends HttpServlet  {
+	private static final long serialVersionUID = 1L;
+	String deletQuery="delete from emp where empno=?";
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
 		try {
+			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("Driver is esablished.........");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb", "root", "Nageswara@123");
-			
-			PreparedStatement psmt=con.prepareStatement("insert into emp values(?,?,?,?)");
-			
+			PreparedStatement pstmt=con.prepareStatement(deletQuery);
 			String empno=request.getParameter("empno");
-			String empname=request.getParameter("empname");
-			String salary=request.getParameter("salary");
-			String deptno=request.getParameter("deptno");
+			pstmt.setInt(1, Integer.parseInt(empno));
 			
-			psmt.setInt(1, Integer.parseInt(empno));
-			psmt.setString(2, empname);
-			psmt.setInt(3,Integer.parseInt(salary));
-			psmt.setInt(4, Integer.parseInt(deptno));
+			int x=pstmt.executeUpdate();
 			
-			int x=psmt.executeUpdate();
-		    
 			if(x>0)
-				out.println(x+ "  Recods are Inserted.....");
+				out.println(x+ "  Recod are Deleted.....");
 			else
-				out.println("No Recod Inserted");
+				out.println("No Recod Deleted");
 			
 			out.print("<a href='empCrud.html'>CRUD PAGE</a>");
-		    psmt.close();
+		    pstmt.close();
 		    con.close();
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
+	catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	}
 
 }

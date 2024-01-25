@@ -51,6 +51,8 @@ public class Servlet5 extends HttpServlet {
 			}
 			out.print("</table>");
 			
+			out.print("<a href='empCrud.html'>CRUD PAGE</a>");
+			
 		}
 	catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
