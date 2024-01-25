@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 		
 		if(role.equals("hr"))
 		{
-			rd=request.getRequestDispatcher("/Servlet5");
+			rd=request.getRequestDispatcher("empCrud.html");
 			rd.forward(request, response);
 		}
 		else if(role.equals("Manager"))
